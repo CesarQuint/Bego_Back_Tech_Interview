@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-async function getCoordinates(placeId: string) {
+async function getCoordinates(placeId: string | any) {
   try {
     const key: string | any = process.env.MAPS_KEY;
 

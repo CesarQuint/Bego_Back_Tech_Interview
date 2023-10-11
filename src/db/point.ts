@@ -1,16 +1,16 @@
-import { Document, Schema, model, Types } from 'mongoose';
+import { Document, Schema, model } from 'mongoose';
 
 export interface PointDocumentProps extends Document {
   location: {
     name: string;
-    placeId: Types.ObjectId;
+    placeId: string;
   };
 }
 
 const pointSchema = new Schema<PointDocumentProps>({
   location: {
     name: String,
-    placeId: Types.ObjectId,
+    placeId: String,
   },
 });
 

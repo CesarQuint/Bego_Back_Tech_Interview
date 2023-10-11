@@ -18,11 +18,11 @@ const uri: string | undefined = process.env.MONGOLINK;
 if (uri) {
   mongoose
     .connect(uri)
-    .then(() => console.log('Database connected'))
+    .then(() => console.log('///Database connected///'))
     .catch(error => console.log('Error connecting to database: ', error));
 }
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port [${port}]`);
 });

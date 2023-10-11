@@ -1,10 +1,19 @@
-import { Document, Schema, model, Types } from 'mongoose';
+import { Document, Schema, model } from 'mongoose';
 
-export interface RouterDocument extends Document {
-  userId: { type: Types.ObjectId; ref: 'User' };
-  pointA: { type: Types.ObjectId; ref: 'Point' };
-  pointB: { type: Types.ObjectId; ref: 'Point' };
-  routeTo: String;
+export interface RouterDocumentProps extends Document {
+  pointA: Schema.Types.ObjectId;
+  pointB: Schema.Types.ObjectId;
+  routeTo: string;
   kilometers: number;
-  order: { type: Types.ObjectId; ref: 'Order' };
 }
+
+const routerSchema = new Schema<RouterDocumentProps>({
+  pointA: { type: Schema.Types.ObjectId, ref: 'Point' },
+  pointB: { type: Schema.Types.ObjectId, ref: 'Point' },
+  routeTo: String,
+  kilometers: Number,
+});
+
+const RouteModel = model<RouterDocumentProps>('Route', routerSchema);
+
+export default RouteModel;

@@ -3,6 +3,7 @@ import userRouter from './users/users.router';
 import pointsRouter from './points/points.router';
 import truckRouter from './trucks/truck.router';
 import routesRouter from './routes/routes.router';
+import ordersRouter from './orders/orders.router';
 
 const router: Router = Router();
 
@@ -14,4 +15,11 @@ router.get('/', (req: Request, res: Response) => {
   });
 });
 
-export default [router, userRouter, pointsRouter, truckRouter, routesRouter];
+export default [
+  router,
+  userRouter,
+  pointsRouter,
+  truckRouter,
+  routesRouter,
+  ordersRouter,
+];
