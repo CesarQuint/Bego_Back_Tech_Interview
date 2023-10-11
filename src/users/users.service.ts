@@ -47,6 +47,7 @@ async function userLogIn(data: userLogInProps) {
     const secretKey: any | undefined = process.env.SECRET_KEY;
 
     const userData = {
+      _id: user._id,
       email: user.email,
       name: user.name,
     };

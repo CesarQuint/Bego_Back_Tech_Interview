@@ -14,7 +14,9 @@ const userSchema: Schema<UserDocument> = new Schema({
   token: { type: String, default: null },
 });
 
-export const UserModel: Model<UserDocument> = mongoose.model<UserDocument>(
+const UserModel: Model<UserDocument> = mongoose.model<UserDocument>(
   'User',
   userSchema
 );
+
+export default UserModel;
