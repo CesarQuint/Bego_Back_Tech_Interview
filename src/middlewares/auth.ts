@@ -16,6 +16,8 @@ async function checkJWT(req: Request, res: Response, next: NextFunction) {
     }
     next();
   } catch (error) {
+    console.log(error);
+
     return res
       .status(500)
       .json({ msg: 'Error en el servidor intentalo mas tarde ' });
