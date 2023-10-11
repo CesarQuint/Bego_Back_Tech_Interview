@@ -12,6 +12,15 @@ interface createRouteProps {
   pointB: string;
 }
 
+interface deleteOrderProps {
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  id: string;
+}
+
 async function getRoutes(data: any) {
   try {
     const routes = await models.RouteModel.find();
@@ -111,8 +120,28 @@ async function updateRoute(data: any) {
     throw error;
   }
 }
-async function deleteRoute(data: any) {
+async function deleteRoute(data: deleteOrderProps) {
   try {
+    const user = await models.UserModel.findById(data.user._id);
+
+    if (!user) throw new Error('No se ha encontrado la credencial del usuario');
+
+    const route = await models.RouteModel.findById(data.id);
+
+    const orders = await models.OrderModel.find({
+      'route.pickUp': route?.pointA,
+      'route.DropOff': route?.pointB,
+    });
+
+    if (orders.length > 0) {
+      throw new Error('No se puede eliminar una ruta que tenga una Orden ');
+    }
+
+    if (orders.length == 0) await models.RouteModel.findByIdAndDelete(data.id);
+
+    return {
+      ok: true,
+    };
   } catch (error) {
     throw error;
   }

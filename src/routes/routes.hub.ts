@@ -47,6 +47,13 @@ async function createRoute(req: Request, res: Response) {
 
 async function updateRoute(req: Request, res: Response) {
   try {
+    const { user }: any = req.headers;
+
+    const { id } = req.params;
+
+    const { route } = req.body;
+
+    const response = await routeService.updateRoute({ user, id, route });
   } catch (error: any) {
     res.status(500).json({ msg: error.message });
   }
@@ -54,6 +61,15 @@ async function updateRoute(req: Request, res: Response) {
 
 async function deleteRoute(req: Request, res: Response) {
   try {
+    const { user }: any = req.headers;
+
+    const { id } = req.params;
+
+    const response: any = await routeService.deleteRoute({ user, id });
+
+    if (response.ok) {
+      res.status(200).json({ ok: true, msg: 'Se elimino la Ruta' });
+    }
   } catch (error: any) {
     res.status(500).json({ msg: error.message });
   }
