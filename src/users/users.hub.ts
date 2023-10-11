@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Service } from './users.service';
+import { UserService } from './users.service';
 
 async function userLogIn(req: Request, res: Response) {
   try {
@@ -8,7 +8,7 @@ async function userLogIn(req: Request, res: Response) {
       throw new Error('Todos los campos son necesarios');
     }
 
-    const response: any = await Service.userLogIn({ email, password });
+    const response: any = await UserService.userLogIn({ email, password });
     if (response.ok) {
       res.status(200).json({ msg: 'Logeado con exito', token: response.token });
     }
@@ -23,7 +23,11 @@ async function userSignUp(req: Request, res: Response) {
       throw new Error('Todos los campos son necesarios');
     }
 
-    const response: any = await Service.userSignUp({ email, name, password });
+    const response: any = await UserService.userSignUp({
+      email,
+      name,
+      password,
+    });
 
     if (response.ok) {
       return res.status(200).json({ msg: 'Usuario registrado con exito' });

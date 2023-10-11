@@ -63,4 +63,4 @@ async function userLogIn(data: userLogInProps) {
   }
 }
 
-export const Service = { userSignUp, userLogIn };
+export const UserService = { userSignUp, userLogIn };
