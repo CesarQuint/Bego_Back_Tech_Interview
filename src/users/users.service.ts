@@ -39,7 +39,6 @@ async function userLogIn(data: userLogInProps) {
     if (!user) {
       throw new Error('No hay una cuenta con ese correo');
     }
-    console.log(user.password, password);
 
     if (user.password !== password) {
       throw new Error('La contraseña es incorrecta');
