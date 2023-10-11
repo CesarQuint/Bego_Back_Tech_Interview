@@ -50,6 +50,8 @@ async function createRoute(data: createRouteProps) {
       await models.PointModel.findById(data.pointB),
     ]);
 
+    console.log(pickUp?.location);
+
     if (!pickUp)
       throw new Error('El punto de partida no se encuentra disponible');
 
@@ -66,9 +68,12 @@ async function createRoute(data: createRouteProps) {
         `Ya hay una ruta con el punto de salida: ${pickUp.location.name} a llegada: ${dropOff.location.name}`
       );
 
+    console.log(dropOff.location.placeId);
+    console.log(pickUp.location.placeId);
+
     const [originLocation, destinationLocation] = await Promise.all([
-      getCoordinates('ChIJ68vJGdf3D5QRnIjueC_Y0nw'),
-      getCoordinates('ChIJiQPXwtk0o5URj2cW455eew4'),
+      getCoordinates(pickUp.location.placeId),
+      getCoordinates(dropOff.location.placeId),
     ]);
 
     if (originLocation && destinationLocation) {
