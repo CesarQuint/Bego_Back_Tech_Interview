@@ -13,6 +13,34 @@ interface createOrderProps {
   truck: string;
 }
 
+interface updateOrderProps {
+  id: string;
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  order: {
+    [key: string]: any; // Añade esta línea
+    _id: string;
+    userId: string;
+    kind: string;
+    description: string;
+    weight: number;
+    route: { pickUp: string; DropOff: string } | string;
+    truck: string;
+  };
+}
+
+interface deleteOrderProps {
+  id: string;
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+}
+
 async function getOrder(userId: string, orderId: string) {
   try {
     const user = await models.UserModel.findById(userId);
@@ -23,8 +51,6 @@ async function getOrder(userId: string, orderId: string) {
       .populate('truck')
       .populate('route.pickUp')
       .populate('route.DropOff');
-
-    console.log(order?.userId.toString(), userId);
 
     if (order?.userId.toString() !== userId) {
       throw new Error('No tienes la autorizacion para esta orden');
@@ -104,15 +130,63 @@ async function createOrder(data: createOrderProps) {
   }
 }
 
-async function updateOrder(data: any) {
+async function updateOrder(data: updateOrderProps) {
   try {
+    const user = await models.UserModel.findById(data.user._id);
+
+    if (!user) throw new Error('No se ha encontrado el Usuario');
+
+    const order: any = await models.OrderModel.findById(data.id)
+      .populate('truck')
+      .populate('route.pickUp')
+      .populate('route.DropOff')
+      .select('-__v');
+
+    if (order?.userId.toString() !== data.user._id) {
+      throw new Error('No tienes la autorizacion para esta orden');
+    }
+
+    const keys = Object.keys(order._doc);
+
+    if (order.status == 'inProgress')
+      throw new Error('No puedes modificar una orden en Progreso');
+
+    if (order.status == 'pending') {
+      for (const key of keys) {
+        order[key] = data.order[key];
+      }
+      await order.save();
+    }
+
+    const updatedOrder = await getOrder(user._id.toString(), order._id);
+
+    return {
+      ok: true,
+      order: updatedOrder,
+    };
   } catch (error: any) {
     throw error;
   }
 }
 
-async function deleteOrder(data: any) {
+async function deleteOrder(data: deleteOrderProps) {
   try {
+    const user = await models.UserModel.findById(data.user._id);
+
+    if (!user) throw new Error('No se ha encontrado el Usuario');
+
+    const order: any = await models.OrderModel.findById(data.id);
+
+    if (order?.userId.toString() !== data.user._id) {
+      throw new Error('No tienes la autorizacion para esta orden');
+    }
+
+    if (order.status == 'inProcess')
+      throw new Error('No puedes cancelar una orden en proceso');
+
+    await models.OrderModel.findByIdAndDelete(order._id);
+
+    return { ok: true };
   } catch (error: any) {
     throw error;
   }

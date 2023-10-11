@@ -86,7 +86,6 @@ async function deleteOrder(req: Request, res: Response) {
       res.status(200).json({
         ok: true,
         msg: 'Orden eliminada',
-        route: response.order,
       });
     }
   } catch (error: any) {
