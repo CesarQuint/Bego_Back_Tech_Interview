@@ -26,6 +26,17 @@ async function getRoute(data: any) {
 }
 async function createRoute(data: createRouteProps) {
   try {
+    const user = await models.UserModel.findById(data.user._id);
+
+    if (!user) {
+      throw new Error('No se ha encontrado la credencial del usuario');
+    }
+
+    if (!data.pointA || !data.pointB) {
+      throw new Error(
+        'El punto de partida y llegada son necesarios,verifica los campos'
+      );
+    }
     const [originLocation, destinationLocation] = await Promise.all([
       getCoordinates('ChIJ68vJGdf3D5QRnIjueC_Y0nw'),
       getCoordinates('ChIJiQPXwtk0o5URj2cW455eew4'),
