@@ -1,7 +1,8 @@
 import { Document, Schema, model } from 'mongoose';
 
 export interface OrderDocumentProps extends Document {
-  kind: { type: String; enum: ['express', 'standard', 'international'] };
+  userId: Schema.Types.ObjectId;
+  kind: { type: String; enum: ['express', 'standard', 'scheduled'] };
   description: String;
   weight: number;
   route: {
@@ -16,6 +17,7 @@ export interface OrderDocumentProps extends Document {
 }
 
 const orderSchema = new Schema<OrderDocumentProps>({
+  userId: { type: Schema.Types.ObjectId, ref: 'User' },
   kind: { type: String, enum: ['express', 'standard', 'international'] },
   description: String,
   weight: Number,

@@ -89,7 +89,7 @@ async function createRoute(data: createRouteProps) {
           kilometers: distance,
         });
 
-        newRoute.save();
+        await newRoute.save();
 
         return {
           ok: true,
