@@ -1,4 +1,5 @@
 import models from '../db';
+import jwt from 'jsonwebtoken';
 
 //Interfaces
 
@@ -44,7 +45,19 @@ async function userLogIn(data: userLogInProps) {
       throw new Error('La contraseña es incorrecta');
     }
 
-    return { ok: true };
+    const secretKey: any | undefined = process.env.SECRET_KEY;
+
+    const userData = {
+      email: user.email,
+      name: user.name,
+    };
+
+    const token = jwt.sign(userData, secretKey, { expiresIn: '1h' });
+
+    user.token = token;
+    user.save();
+
+    return { ok: true, token };
   } catch (error) {
     throw error;
   }

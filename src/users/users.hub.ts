@@ -10,7 +10,7 @@ async function userLogIn(req: Request, res: Response) {
 
     const response: any = await Service.userLogIn({ email, password });
     if (response.ok) {
-      res.status(200).json({ msg: 'Logeado con exito' });
+      res.status(200).json({ msg: 'Logeado con exito', token: response.token });
     }
   } catch (error: any) {
     res.status(500).json({ msg: error.message });
