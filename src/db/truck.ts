@@ -1,6 +1,6 @@
 import { Document, Schema, model } from 'mongoose';
 
-interface TruckDocument extends Document {
+interface TruckDocumentProps extends Document {
   model: string;
   make: string;
   year: number;
@@ -9,7 +9,7 @@ interface TruckDocument extends Document {
   created_at: number;
 }
 
-const truckSchema = new Schema<TruckDocument>({
+const truckSchema = new Schema<TruckDocumentProps>({
   model: String,
   make: String,
   year: Number,
@@ -18,6 +18,6 @@ const truckSchema = new Schema<TruckDocument>({
   created_at: Number,
 });
 
-const TruckModel = model<TruckDocument>('Truck', truckSchema);
+const TruckModel = model<TruckDocumentProps>('Truck', truckSchema);
 
 export default TruckModel;
