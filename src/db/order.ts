@@ -1,30 +1,33 @@
-import { Document, Schema, model, Types } from 'mongoose';
+import { Document, Schema, model } from 'mongoose';
 
 export interface OrderDocumentProps extends Document {
-  kind: { type: String; enum: ['express,standard,international'] };
+  kind: { type: String; enum: ['express', 'standard', 'international'] };
   description: String;
   weight: number;
   route: {
-    pickUp: Types.ObjectId;
-    DropOff: Types.ObjectId;
+    pickUp: Schema.Types.ObjectId;
+    DropOff: Schema.Types.ObjectId;
   };
   status: {
     type: String;
     enum: ['pending', 'inProgress', 'complete', 'failed'];
   };
-  truck: Types.ObjectId;
+  truck: Schema.Types.ObjectId;
 }
 
 const orderSchema = new Schema<OrderDocumentProps>({
-  kind: String,
+  kind: { type: String, enum: ['express', 'standard', 'international'] },
   description: String,
   weight: Number,
   route: {
-    pickUp: { ref: 'Point' },
-    DropOff: { ref: 'Point' },
+    pickUp: { type: Schema.Types.ObjectId, ref: 'Point' },
+    DropOff: { type: Schema.Types.ObjectId, ref: 'Point' },
   },
-  status: String,
-  truck: { ref: 'Truck' },
+  status: {
+    type: String,
+    enum: ['pending', 'inProgress', 'complete', 'failed'],
+  },
+  truck: { type: Schema.Types.ObjectId, ref: 'Truck' },
 });
 
 const OrderModel = model<OrderDocumentProps>('Order', orderSchema);

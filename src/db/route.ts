@@ -1,17 +1,15 @@
-import { Document, Schema, model, Types } from 'mongoose';
+import { Document, Schema, model } from 'mongoose';
 
 export interface RouterDocumentProps extends Document {
-  userId: Types.ObjectId;
-  pointA: Types.ObjectId;
-  pointB: Types.ObjectId;
+  pointA: Schema.Types.ObjectId;
+  pointB: Schema.Types.ObjectId;
   routeTo: string;
   kilometers: number;
 }
 
 const routerSchema = new Schema<RouterDocumentProps>({
-  userId: { ref: 'User' },
-  pointA: { ref: 'Point' },
-  pointB: { ref: 'Point' },
+  pointA: { type: Schema.Types.ObjectId, ref: 'Point' },
+  pointB: { type: Schema.Types.ObjectId, ref: 'Point' },
   routeTo: String,
   kilometers: Number,
 });
