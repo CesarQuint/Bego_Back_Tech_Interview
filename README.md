@@ -34,12 +34,12 @@ Nota:los archivos Json resultantes de esta prueva estan en la carpeta jsons
   > Con un cuerpo como este:
 
 ```
-{
+
  {
   "email": "correo@ejemplo.com",
   "password": "contraseña_secreta"
 }
-}
+
 ```
 
 Este te proporcionara un jwt en la respuesta del cuerpo
