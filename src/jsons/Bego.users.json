@@ -1,0 +1,10 @@
+[{
+  "_id": {
+    "$oid": "6525f9169825f28be42c2860"
+  },
+  "email": "correo@ejemplo.com",
+  "password": "contraseña_secreta",
+  "name": "Cesar",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTI1ZjkxNjk4MjVmMjhiZTQyYzI4NjAiLCJlbWFpbCI6ImNvcnJlb0BlamVtcGxvLmNvbSIsIm5hbWUiOiJDZXNhciIsImlhdCI6MTY5NzA3MTY2MCwiZXhwIjoxNjk3MDc1MjYwfQ.g-PUGVQX9wLdXeXY0FKIuKBI9lZJS-eRkV0T7n7haBM",
+  "__v": 0
+}]

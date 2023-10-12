@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "652743121ea03e26e733548d"
+  },
+  "userId": {
+    "$oid": "6525f9169825f28be42c2860"
+  },
+  "kind": "express",
+  "description": "Test no2",
+  "weight": 2800,
+  "route": {
+    "pickUp": {
+      "$oid": "6480d4a2665cefa2836dff01"
+    },
+    "DropOff": {
+      "$oid": "6480d4d0665cefa2836dff02"
+    }
+  },
+  "status": "pending",
+  "truck": {
+    "$oid": "647e80bb08f76ab0e20a6ca1"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652746e4e08421c4dbde862c"
+  },
+  "userId": {
+    "$oid": "6525f9169825f28be42c2860"
+  },
+  "kind": "standard",
+  "description": "San Pedro SA",
+  "weight": 2800,
+  "route": {
+    "pickUp": {
+      "$oid": "6480d4a2665cefa2836dff01"
+    },
+    "DropOff": {
+      "$oid": "6480d4f3665cefa2836dff03"
+    }
+  },
+  "status": "pending",
+  "truck": {
+    "$oid": "647e80bb08f76ab0e20a6ca1"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65274755871070e0363dccd7"
+  },
+  "userId": {
+    "$oid": "6525f9169825f28be42c2860"
+  },
+  "kind": "express",
+  "description": "Por favor ponerce en contacto conmigo",
+  "weight": 5800,
+  "route": {
+    "pickUp": {
+      "$oid": "6480d4f3665cefa2836dff03"
+    },
+    "DropOff": {
+      "$oid": "6480d521665cefa2836dff04"
+    }
+  },
+  "status": "pending",
+  "truck": {
+    "$oid": "647e7fd008f76ab0e20a6c9c"
+  },
+  "__v": 0
+}]

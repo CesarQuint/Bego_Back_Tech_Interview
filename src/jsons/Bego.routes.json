@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "6526f1837a83b36d1213962a"
+  },
+  "pointA": {
+    "$oid": "6480d4a2665cefa2836dff01"
+  },
+  "pointB": {
+    "$oid": "6480d4f3665cefa2836dff03"
+  },
+  "routeTo": "De Salida camiones, Laprida, C. Iguazú y, San Ramon de la Nueva Oran, Salta a Cristo Redentor, Las Heras, Mendoza",
+  "kilometers": 1444,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6526f2217a83b36d12139634"
+  },
+  "pointA": {
+    "$oid": "6480d4a2665cefa2836dff01"
+  },
+  "pointB": {
+    "$oid": "6480d4d0665cefa2836dff02"
+  },
+  "routeTo": "De Salida camiones, Laprida, C. Iguazú y, San Ramon de la Nueva Oran, Salta a Puerto Madero, CABA",
+  "kilometers": 1659,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6526f22f7a83b36d1213963a"
+  },
+  "pointA": {
+    "$oid": "6480d4f3665cefa2836dff03"
+  },
+  "pointB": {
+    "$oid": "6480d521665cefa2836dff04"
+  },
+  "routeTo": "De Cristo Redentor, Las Heras, Mendoza a Parador - Centro Recreativo Camioneros Río Negro",
+  "kilometers": 806,
+  "__v": 0
+}]
