@@ -1,10 +1,19 @@
 import { Request, Response } from 'express';
 import { ordersService } from './orders.service';
 
+interface User {
+  _id: string;
+  email: string;
+  name: string;
+}
+
 async function getOrder(req: Request, res: Response) {
   try {
-    const { user }: any = req.headers;
-    const { id }: any = req.params;
+    const { _id, email, name } = req.headers as unknown as User;
+
+    const user: User = { _id, email, name };
+
+    const { id } = req.params;
 
     const response: any = await ordersService.getOrder(user._id, id);
     if (response.ok) {
@@ -17,7 +26,9 @@ async function getOrder(req: Request, res: Response) {
 
 async function getOrders(req: Request, res: Response) {
   try {
-    const { user }: any = req.headers;
+    const { _id, email, name } = req.headers as unknown as User;
+
+    const user: User = { _id, email, name };
 
     const response: any = await ordersService.getOrders(user._id);
 
@@ -31,7 +42,10 @@ async function getOrders(req: Request, res: Response) {
 
 async function createOrder(req: Request, res: Response) {
   try {
-    const { user }: any = req.headers;
+    const { _id, email, name } = req.headers as unknown as User;
+
+    const user: User = { _id, email, name };
+
     const { kind, description, weight, route, truck } = req.body;
 
     const response: any = await ordersService.createOrder({
@@ -57,8 +71,11 @@ async function createOrder(req: Request, res: Response) {
 
 async function updateOrder(req: Request, res: Response) {
   try {
-    const { user }: any = req.headers;
-    const { id }: any = req.params;
+    const { _id, email, name } = req.headers as unknown as User;
+
+    const user: User = { _id, email, name };
+
+    const { id } = req.params;
     const { order } = req.body;
 
     const response: any = await ordersService.updateOrder({ user, id, order });
@@ -77,8 +94,11 @@ async function updateOrder(req: Request, res: Response) {
 
 async function deleteOrder(req: Request, res: Response) {
   try {
-    const { user }: any = req.headers;
-    const { id }: any = req.params;
+    const { _id, email, name } = req.headers as unknown as User;
+
+    const user: User = { _id, email, name };
+
+    const { id } = req.params;
 
     const response: any = await ordersService.deleteOrder({ user, id });
 
