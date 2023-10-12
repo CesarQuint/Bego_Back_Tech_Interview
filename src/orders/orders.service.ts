@@ -21,7 +21,7 @@ interface updateOrderProps {
     email: string;
   };
   order: {
-    [key: string]: any; // Añade esta línea
+    [key: string]: any;
     _id: string;
     userId: string;
     kind: string;
@@ -91,7 +91,7 @@ async function createOrder(data: createOrderProps) {
 
     if (!user) throw new Error('No se ha encontrado una cuenta asociada');
 
-    const existTruck = await models.TruckModel.findById({ _id: data.truck });
+    const existTruck = await models.TruckModel.findById(data.truck);
 
     if (!existTruck) throw new Error('No se ha encontrado el Camion ');
 

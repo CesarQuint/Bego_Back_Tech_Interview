@@ -47,7 +47,7 @@ async function createOrder(req: Request, res: Response) {
       res.status(200).json({
         ok: true,
         msg: 'Orden creada con exito',
-        route: response.order,
+        order: response.order,
       });
     }
   } catch (error: any) {

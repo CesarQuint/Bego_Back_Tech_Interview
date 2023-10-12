@@ -2,7 +2,7 @@ import { Document, Schema, model } from 'mongoose';
 
 export interface OrderDocumentProps extends Document {
   userId: Schema.Types.ObjectId;
-  kind: { type: String; enum: ['express', 'standard', 'scheduled'] };
+  kind: { type: String; enum: ['express', 'standard'] };
   description: String;
   weight: number;
   route: {

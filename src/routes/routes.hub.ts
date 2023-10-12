@@ -53,7 +53,17 @@ async function updateRoute(req: Request, res: Response) {
 
     const { route } = req.body;
 
-    const response = await routeService.updateRoute({ user, id, route });
+    const response: any = await routeService.updateRoute({ user, id, route });
+
+    if (response.ok) {
+      res
+        .status(200)
+        .json({
+          ok: true,
+          msg: 'Ruta actualizada con exito',
+          route: response.route,
+        });
+    }
   } catch (error: any) {
     res.status(500).json({ msg: error.message });
   }
