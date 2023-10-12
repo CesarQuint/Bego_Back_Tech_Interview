@@ -1,9 +1,9 @@
-import express, { Application, NextFunction } from 'express';
+import express, { Application } from 'express';
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 
-import router from './src/router';
+import router from './router';
 
 const app: Application = express();
 

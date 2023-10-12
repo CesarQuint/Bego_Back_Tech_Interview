@@ -1,5 +1,6 @@
 import models from '../db';
 import jwt from 'jsonwebtoken';
+import { Document } from 'mongoose';
 
 //Interfaces
 
@@ -14,11 +15,21 @@ interface userLogInProps {
   password: string;
 }
 
+interface User extends Document {
+  _id: string;
+  email: string;
+  password: string;
+  name: string;
+  token?: string;
+}
+
 //Interfaces
 
 async function userSignUp(data: userSignUpProps) {
   try {
-    const user = await models.UserModel.findOne({ email: data.email });
+    const user: User | null = await models.UserModel.findOne({
+      email: data.email,
+    });
 
     if (!user) {
       const newUser = new models.UserModel(data);
@@ -35,7 +46,7 @@ async function userSignUp(data: userSignUpProps) {
 async function userLogIn(data: userLogInProps) {
   try {
     const { email, password } = data;
-    const user: any = await models.UserModel.findOne({ email });
+    const user: User | null = await models.UserModel.findOne({ email });
     if (!user) {
       throw new Error('No hay una cuenta con ese correo');
     }
